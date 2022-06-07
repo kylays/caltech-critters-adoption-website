@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+  Name: Kyla Yu-Swanson
+  CS 132 Spring 2022
+  Date: June 2022
+
+  This page shows the user which animals they currently have in their adoption cart.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Caltech Critters: Adopt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Train+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="cart-styles.css" />
+    <script src="helpers.js"></script>
+    <script src="kyla-helpers.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">Caltech Critters</a></h1>
+      <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="cart.html"><img src="imgs/cart1-white.png" alt="Cart"></a>
+      </nav>
+    </header>
+    <main>
+      <section id="items-section">
+        <!--
+          To be filled dynamically with the API
+        -->
+      </section>
+      <section id="buy-section">
+        <p>$0</p>
+        <form>
+          <input type="checkbox" id="agreement" name="agreement" value="agreement">
+          <label for="agreement">I agree to responsibly care for my animal(s).</label>
+          <button>Buy!</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; Kyla Yu-Swanson, Spring 2022 | Uses Caltech Animals API by Clara Wang and Kyla Yu-Swanson
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+ /*
+Name: Kyla Yu-Swanson
+CS 132 Spring 2022
+Date: May 10, 2022
+
+This is the general styles file that keeps the website view consistent across pages.
+*/
+
+body {
+  background-image: url("imgs/retro-flowers1.jpg"); /*Source: Society6*/
+  padding: 25px;
+}
+
+body > * {
+  margin: 25px;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+footer > p, header > h1, h2, h3, h4 {
+  text-align: center;
+}
+
+/*---------------------------- HEADER -----------------------------*/
+
+header, body > * {
+  background-color: white;
+}
+
+header > h1 {
+  margin: 15px 0px;
+  font-size: 50px;
+  font-family: 'Monoton', 'Train One', cursive;
+}
+
+header > nav > ul {
+  list-style: none;
+  padding: 0px 15px;
+  margin: 5px 0px;
+}
+
+nav > ul > li > a {
+  color: white;
+  font-weight: bold;
+}
+
+header {
+  padding: 15px 0px;
+}
+
+header > nav > ul > li {
+  padding-right: 25px;
+  margin: auto;
+}
+
+header > nav > a > img {
+  width: 30px;
+  padding-right: 15px;
+}
+
+header > nav > a {
+  margin-top: 3px;
+}
+
+nav > ul > li > a, header > h1 > a {
+  text-decoration: none;
+}
+
+header > nav {
+  padding: 3px 0px;
+  background-color: rgb(152, 81, 0);
+}
+
+header > nav, h2, h3, h4, header > nav > ul > li > a, header > nav > ul {
+  display: flex;
+}
+
+header > nav, header > nav > ul {
+  justify-content: space-between;
+}
+
+header > h1 > a, p, p > a, li, ul, h2, h3, div, figcaption, footer, button {
+  color: rgb(152, 81, 0);
+}
+
+/*---------------------------- MAIN -----------------------------*/
+p, p > a, li, ul, h2, h3, div, figcaption, footer, button {
+  font-family: Ubuntu, Verdana, sans-serif;
+}
+
+p, p > a, div, figcaption, footer, ul, li {
+  font-size: 20px;
+}
+
+h2, h3, h4 {
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  width: 55%;
+  border-radius: 50px;
+  height: 100px;
+  background-color: rgb(255, 184, 62);
+  margin: 0px auto 25px auto;
+}
+
+.hidden {
+  display: none;
+}

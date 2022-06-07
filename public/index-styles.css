@@ -1,0 +1,11 @@
+ /*
+Name: Kyla Yu-Swanson
+CS 132 Spring 2022
+Date: May 10, 2022
+
+This is the CSS file that styles the home page for Caltech Critters.
+*/
+
+#slides-gallery {
+  max-width: 1250px;
+}

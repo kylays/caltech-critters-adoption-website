@@ -1,0 +1,56 @@
+ /*
+Name: Kyla Yu-Swanson
+CS 132 Spring 2022
+Date: May 10, 2022
+
+This is a general styles page for a slide show gallery, which is used on the 
+product and index pages.
+*/
+
+.hide {
+  display: none;
+}
+
+#slides-gallery > img, #prev-btn, #next-btn {
+  width: 100%;
+  border-radius: 25px;
+}
+
+#slides-gallery {
+  position: relative;
+  margin: 0px auto;
+  padding-bottom: 0px;
+}
+
+#prev-btn, #next-btn {
+  cursor: pointer;
+  width: 50px;
+  text-align: center;
+  padding: 10px;
+  color: rgb(152, 81, 0);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#slides-gallery > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+#next-btn {
+  right: 0;
+}
+
+#prev-btn {
+  left: 0;
+}
+
+#prev-btn:hover, #next-btn:hover {
+  background-color: rgba(152, 81, 0, 0.5);
+}
+
+#prev-btn, #next-btn {
+  background-color: transparent;
+  border-color: transparent;
+}

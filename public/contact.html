@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+  Name: Kyla Yu-Swanson
+  CS 132 Spring 2022
+  Date: June 2022
+
+  This page will allow users to file complaints or contact the company.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Caltech Critters: Adopt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Train+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="contact-styles.css" />
+    <script src="helpers.js"></script>
+    <script src="kyla-helpers.js"></script>
+    <script src="contact.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">Caltech Critters</a></h1>
+      <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="cart.html"><img src="imgs/cart1-white.png" alt="Cart"></a>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h2>Contact Us</h2>
+        <section>
+          <form>
+            <p>
+              <label for="name">Name: </label>
+              <input type="text" name="name" required/>
+            </p>
+            <p>
+              <label for="email">Email: </label>
+              <input id="email" name="email" type="email" />
+            </p>
+            <p><label for="feedback">Feedback: </label></p>
+            <textarea id="feedback" name="feedback" rows="5" cols="40" minlength="10"></textarea>
+            <button id="send-msg">Send!</button>
+          </form>
+        </section>
+        <p id="results">
+          <!--To be filled with response from server-->
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; Kyla Yu-Swanson, Spring 2022 | Uses Caltech Animals API by Clara Wang and Kyla Yu-Swanson
+      </p>
+    </footer>
+  </body>
+</html>

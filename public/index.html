@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+  Name: Kyla Yu-Swanson
+  CS 132 Spring 2022
+  Date: June 2022
+
+  This is the home page for Caltech Critters.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Caltech Critters: Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Train+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="slides-styles.css" />
+    <link rel="stylesheet" href="index-styles.css" />
+    <script src="helpers.js"></script>
+    <script defer src="slides.js"></script>
+    <script src="kyla-helpers.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">Caltech Critters</a></h1>
+      <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="cart.html"><img src="imgs/cart1-white.png" alt="Cart"></a>
+      </nav>
+    </header>
+    <main>
+      <div id="slides-gallery">
+        <img class="hide" src="imgs/caltech1.jpg" alt="Caltech athletic field">
+        <img class="hide" src="imgs/caltech2.jpg" alt="Caltech walking paths">
+        <img class="hide" src="imgs/caltech3.jpg" alt="Orange trees at Caltech">
+        <div>
+          <button id="prev-btn">&#10094;</button>
+          <button id="next-btn">&#10095;</button>
+        </div>
+      </div>
+      <article>
+        <h2>About</h2>
+        <p>
+          Welcome to the Caltech Critters online pet store! Here you can find animals 
+          found at the California Institute of Technology for adoption. Caltech is 
+          situated in Southern California, so these critters will do best in warm 
+          and dry climates! Make sure to check out the animals available one the 
+          animals tab. If you'd like to adopt, press the adopt button and proceed 
+          to the adoption confirmation page from the cart.
+        </p>
+      </article>
+    </main>
+    <footer>
+      <p>
+        &copy; Kyla Yu-Swanson, Spring 2022 | Images from <a href="http://caltech.edu">Caltech</a>
+      </p>
+    </footer>
+  </body>
+</html>

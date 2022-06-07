@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+  Name: Kyla Yu-Swanson
+  CS 132 Spring 2022
+  Date: June 2022
+
+  This page shows the animals available for adoption. 
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Caltech Critters: Adopt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Train+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animals-styles.css" />
+    <script src="helpers.js"></script>
+    <script src="kyla-helpers.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">Caltech Critters</a></h1>
+      <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="cart.html"><img src="imgs/cart1-white.png" alt="Cart"></a>
+      </nav>
+    </header>
+    <main>
+      <section id="gallery-view">
+        <button class="view-animal">
+          <figure>
+            <img src="stock-img/product.jpg" alt="???">
+            <figcaption>
+              Name
+            </figcaption>
+          </figure>
+        </button>
+      </section>
+      <section id="single-view" class="hidden">
+        <article id="overview">
+          <h2>Name</h2>
+          <img src="stock-img/product.jpg" alt="product">
+          <article>
+            <h3>Quick Facts</h3>
+            <ul>
+              <li>Name:</li>
+              <li>Species:</li>
+              <li>Age:</li>
+              <li>Gender:</li>
+              <li>Adoption Price:</li>
+            </ul>
+            <button>Adopt Me</button>
+          </article>
+        </article>
+        <article id="about">
+          <h3>About Name</h3>
+          <p>
+            Description
+          </p>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; Kyla Yu-Swanson, Spring 2022 | Uses Caltech Animals API by Clara Wang and Kyla Yu-Swanson
+      </p>
+    </footer>
+  </body>
+</html>

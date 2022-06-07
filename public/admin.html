@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+  Name: Kyla Yu-Swanson
+  CS 132 Spring 2022
+  Date: June 2022
+
+  This is the home page for Caltech Critters.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Caltech Critters: Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Train+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="admin-styles.css" />
+    <script src="helpers.js"></script>
+    <script src="kyla-helpers.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">Caltech Critters</a></h1>
+      <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="cart.html"><img src="imgs/cart1-white.png" alt="Cart"></a>
+      </nav>
+    </header>
+    <main>
+      <section id="login-view">
+        <h2>Login</h2>
+        <form id="login-form">
+          <p>
+              <label for="username">Username: </label>
+              <input id="username" name="username" type="text" />
+            <p>
+              <label for="password">Age: </label>
+              <input id="password" name="password" type="password" />
+            </p>
+            <button id="login">Login!</button>
+          </p>
+        </form>
+      </section>
+      <section id="add-view" class="hidden">
+        <h2>Put Up New Animal For Adoption</h2>
+        <form id="add-form">
+          <p>
+            <label for="name">Name: </label>
+            <input id="name" name="name" type="text" />
+            <p>
+              <label for="item-age">Age: </label>
+              <input id="item-age" name="age" type="text" />
+            </p>
+            <p>
+              <label for="item-gender">Gender: </label>
+              <input id="item-gender" name="gender" type="text" />
+            </p>
+            <p>
+              <label for="item-cost">Cost: </label>
+              <input id="item-cost" name="cost" type="text" />
+            </p>
+            <p>
+              <label for="description">Description: </label>
+            </p>
+            <textarea id="description" name="description" rows="6" cols="50"></textarea>
+            <p>
+              <label for="image">Image: </label>
+              <input id="image" name="image" type="file"/>
+            </p>
+            <button id="add-animal">Add Animal!</button>
+          </p>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; Kyla Yu-Swanson, Spring 2022 | Uses Caltech Animals API by Clara Wang and Kyla Yu-Swanson
+      </p>
+    </footer>
+  </body>
+</html>
