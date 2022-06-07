@@ -32,11 +32,11 @@ function init() {
 }
 
 /**
- * Fetches JSON data from the given URL.
+ * Fetches JSON data from the given URL using GET request.
  * @param {string} url - the URL to fetch
  * @returns {JSON} - the data obtained
  */
-async function fetchJSONResponse(url) {
+async function getJSONResponse(url) {
   try {
     let resp = await fetch(url);
     resp = checkStatus(resp);
@@ -48,11 +48,11 @@ async function fetchJSONResponse(url) {
 }
 
 /**
- * Fetches text data from the given URL.
+ * Fetches text data from the given URL using GET request.
  * @param {string} url - the URL to fetch
  * @returns {string} - the data obtained
  */
-async function fetchTextResponse(url) {
+async function getTextResponse(url) {
   try {
     let resp = await fetch(url);
     resp = checkStatus(resp);
