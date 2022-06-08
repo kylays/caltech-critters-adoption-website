@@ -11,8 +11,12 @@ const fs = require("fs/promises");
 const globby = require("globby");
 const multer = require("multer");
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: async function (req, file, cb) {
     cb(null, 'stock-img/')
+    let folders = await fs.readdir("public/");
+    if (!folders.includes("stock-img")) {
+      await fs.mkdir("public/stock-img");
+    }
     cb(null, 'public/stock-img/')
   },
   filename: function (req, file, cb) {
@@ -71,7 +75,7 @@ app.get("/all-animals", async (req, res, next) => {
  */
 app.get("/animals/:type", async (req, res, next) => {
   try {
-    let type = req.params["type"];
+    let type = req.params["type"].toLowerCase();
     let types = await fs.readdir("animals/");          
     if (!types.includes(type)) {
       res.status(CLIENT_ERR_CODE);
@@ -92,8 +96,8 @@ app.get("/animals/:type", async (req, res, next) => {
  */
 app.get("/one-animal/:type/:name", async (req, res, next) => {
   try {
-    let type = req.params["type"];
-    let name = req.params["name"];
+    let type = req.params["type"].toLowerCase();
+    let name = req.params["name"].toLowerCase();
     let types = await fs.readdir("animals/");
     if (!types.includes(type)) {
       res.status(CLIENT_ERR_CODE);

@@ -13,7 +13,6 @@
    * Runs the needed functions for the website upon starting.
    */
   function init() {
-    console.log(qs("form"));
     qs("form").addEventListener("submit", (evt) => {
       evt.preventDefault();
       let data = new FormData(qs("form"));

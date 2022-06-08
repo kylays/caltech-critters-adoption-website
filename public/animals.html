@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="animals-styles.css" />
     <script src="helpers.js"></script>
     <script src="kyla-helpers.js"></script>
+    <script defer src="animals.js"></script>
   </head>
   <body>
     <header>
@@ -33,16 +34,18 @@
     </header>
     <main>
       <section id="gallery-view">
-        <button class="view-animal">
-          <figure>
-            <img src="stock-img/product.jpg" alt="???">
-            <figcaption>
-              Name
-            </figcaption>
-          </figure>
-        </button>
+        <p>Filter:</p>
+        <select id="menu">
+          <option value="all" selected>All</option>
+          <!--To be filled with filtering options dynamically-->
+        </select>
+        <button id="search">Search!</button>
+        <section>
+          <!--To be filled dynamically with the animals-->
+        </section>
       </section>
       <section id="single-view" class="hidden">
+        <button>Back</button>
         <article id="overview">
           <h2>Name</h2>
           <img src="stock-img/product.jpg" alt="product">
@@ -55,7 +58,7 @@
               <li>Gender:</li>
               <li>Adoption Price:</li>
             </ul>
-            <button>Adopt Me</button>
+            <button>Adopt Me (Add to Cart)</button>
           </article>
         </article>
         <article id="about">

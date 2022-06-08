@@ -16,13 +16,13 @@ img {
   width: 100%;
 }
 
-#gallery-view {
+#gallery-view > section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-#gallery-view > a {
+#gallery-view > section > a {
   width: 25%;
   min-width: 200px;
   background-color: rgb(255, 184, 62);
@@ -33,10 +33,14 @@ img {
   margin: 15px;
 }
 
-#gallery-view > a, figure, img {
+#gallery-view > section > a, figure, img {
   border-radius: 25px;
 }
 
-#gallery-view > a {
+#gallery-view > section > a {
   text-decoration: none;
+}
+
+.hidden {
+  display: none;
 }

@@ -8,12 +8,6 @@
 const DEBUG = true;
 
 /**
- * Runs the needed functions for the website upon starting.
- */
-function init() {
-}
-
-/**
  * This function removes all child nodes from a DOM parent node.
  * @param {DOMElement} parent - the parent node to remove all children from
  */
@@ -28,7 +22,11 @@ function init() {
  * @param {Error} - error object with error message.
  */
   function handleError(err) {
-    id('result').textContent = "Something went wrong on the server. Please try again later.";
+    if (id('result')) {
+      id('result').textContent = "Something went wrong on the server. Please try again later.";
+    } else {
+      console.log("Something went wrong on the server. Please try again later.");
+    }
 }
 
 /**
@@ -61,4 +59,30 @@ async function getTextResponse(url) {
   } catch (err) {
     handleError(err);
   }
+}
+
+/**
+ * Fetches a text response from the given URL and params using a POST request.
+ * @param {string} url - the URL to fetch
+ * @param {string} params - the body of the post request
+ * @returns {string} - the text response
+ */
+async function postTextResponse(url, params) {
+  try {
+    let resp = await fetch(url, { method : "POST", body : params });
+    resp = checkStatus(resp);
+    let data = await resp.text();
+    return data;
+  } catch (err) {
+    handleError(err);
+  }
+}
+
+/**
+ * Capitalizes first letter of the given string
+ * @param {string} s - string to capitalize
+ * @returns the string with its first letter capitalized
+ */
+ function capitalize(s) {
+  return s[0].toUpperCase() + s.slice(1);
 }
