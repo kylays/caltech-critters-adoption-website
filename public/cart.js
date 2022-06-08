@@ -26,8 +26,8 @@
    */
   async function populateCart() {
     let cartItems = await getJSONResponse(BASE_URL + "cart");
-    let data = new FormData();
     for (let i = 0; i < cartItems.length; i++) {
+      let data = new FormData();
       if (cartItems[i]) {
         let animal = await getJSONResponse(BASE_URL + "one-animal/" + cartItems[i]);
         let card = gen("figure");
@@ -53,20 +53,20 @@
         data.append("type", animal.type);
         data.append("name", animal.name);
       }
+      qs("form").addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        if (totalCost !== 0 && qs("#buy-section > form > #agreement").checked) {
+        fetch(BASE_URL + "buy", { method : "POST", body : data })
+                .then(checkStatus)
+                .then(resp => resp.text())
+                .then(buyCallback)
+                .catch(handleError);
+        }
+        else {
+          id("results").textContent = "Please agree to the terms and/or add something to the cart.";
+        }
+      });
     }
-    qs("form").addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      if (totalCost !== 0 && qs("#buy-section > form > #agreement").checked) {
-      fetch(BASE_URL + "buy", { method : "POST", body : data })
-              .then(checkStatus)
-              .then(resp => resp.text())
-              .then(buyCallback)
-              .catch(handleError);
-      }
-      else {
-        id("results").textContent = "Please agree to the terms and/or add something to the cart.";
-      }
-    });
   }
 
   /**
@@ -75,6 +75,12 @@
    */
   function buyCallback(textResponse) {
     id("results").textContent = textResponse;
+    fetch(BASE_URL + "cart/clear", { method : "POST" })
+              .then(checkStatus)
+              .catch(handleError);
+    removeAllChildNodes(id("items-section"));
+    totalCost = 0;
+    qs("#buy-section > p").textContent = `\$${totalCost}`;
   }
 
   init();

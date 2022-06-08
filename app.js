@@ -325,6 +325,9 @@ app.get("/cart", async (req, res, next) => {
   try {
     let cart = await fs.readFile("cart.txt", "utf8");
     let lines = cart.split("\n");
+    if (!lines[lines.length - 1]){
+      lines.pop(); // remove the "" that was created from the newline
+    }
     res.json(lines);
   } catch (err) {
     res.status(SERVER_ERR_CODE);
@@ -351,7 +354,7 @@ app.post("/cart/add", multer().none(), async (req, res, next) => {
     }
     if (found) {
       res.type("text");
-      res.write(`${type} with name ${name} was already in cart.`);
+      res.write(`${capitalize(type)} with name ${capitalize(name)} was already in cart.`);
       res.end();
       return;
     }
@@ -387,7 +390,7 @@ app.post("/cart/remove", multer().none(), async (req, res, next) => {
     }
     if (!found) {
       res.type("text");
-      res.write(`${type} with name ${name} was not in cart.`);
+      res.write(`${capitalize(type)} with name ${capitalize(name)} was not in cart.`);
       res.end();
       return;
     }
@@ -478,7 +481,7 @@ function errorHandler(err, req, res, next) {
  * @returns the string with its first letter capitalized
  */
 function capitalize(s) {
-  return s[0].toUpperCase() + s.slice(1);
+  return s[0].toUpperCase() + s.slice(1).toLowerCase();
 }
 
 /**

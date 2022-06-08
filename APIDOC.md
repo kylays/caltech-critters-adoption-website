@@ -161,7 +161,6 @@ Summary of endpoints:
 * 400 Error: `type` does not exist in the database.
 * 400 Error: `type` with name `name` does not exist in the database.
 
-
 ## *GET /images*
 **Request Type:** *GET*
 
@@ -210,14 +209,16 @@ Returns a success response or an error.
 ```Successfully submitted feedback.```
 
 **Error Handling:**
-* 400 Error: One or more required POST parameters for /feedback are missing: name, email, feedback.
+* 400 Error: One or more required POST parameters for /feedback are missing: name, 
+email, feedback.
 * 500 Error: Something went wrong on the server, please try again later.
 
 ## *POST /buy*
 **Returned Data Format**: Plain Text
 
 **Description:** 
-Sends information about an animal being adopted/purchased to the Caltech Adoption web service. Returns an error if unsuccessful.
+Sends information about an animal being adopted/purchased to the Caltech Adoption 
+web service. Returns an error if unsuccessful.
 
 **Supported Parameters**
 * POST body parameters: 
@@ -240,7 +241,8 @@ Sends information about an animal being adopted/purchased to the Caltech Adoptio
 **Returned Data Format**: Plain Text
 
 **Description:** 
-Sends information about an animal being put up for adoption to the Caltech Adoption web service for a "upload" endpoint. Returns a success response or an error.
+Sends information about an animal being put up for adoption to the Caltech Adoption 
+web service for a "upload" endpoint. Returns a success response or an error.
 
 **Supported Parameters**
 * POST body parameters: 
@@ -266,7 +268,8 @@ Sends information about an animal being put up for adoption to the Caltech Adopt
 ```Successfully submitted info.```
 
 **Error Handling:**
-* 400 Error: One or more required parameters for /admin/add endpoint are missing: type, name, age, gender, cost, description, imagePath, available
+* 400 Error: One or more required parameters for /admin/add endpoint are missing: type, 
+name, age, gender, cost, description, imagePath, available
 * 400 Error: `type` with `name` already exists. Please choose another name.
 * 500 Error: Something went wrong on the server, please try again later.
 
@@ -274,7 +277,8 @@ Sends information about an animal being put up for adoption to the Caltech Adopt
 **Returned Data Format**: Plain Text
 
 **Description:** 
-Sends an image file (.png or .jpg) to the Caltech Adoption web service for a "upload" endpoint.Returns a success response or an error.
+Sends an image file (.png or .jpg) to the Caltech Adoption web service for a "upload" 
+endpoint. Returns a success response or an error.
 
 **Supported Parameters**
 * POST body parameters: 
@@ -295,7 +299,8 @@ Sends an image file (.png or .jpg) to the Caltech Adoption web service for a "up
 **Returned Data Format**: Plain Text
 
 **Description:** 
-Sends a username and password to the Caltech Adoption web service for a "Login" endpoint. Returns a response about whether the information matched a user's username and password.
+Sends a username and password to the Caltech Adoption web service for a "Login" endpoint. 
+Returns a response about whether the information matched a user's username and password.
 
 **Supported Parameters**
 * POST body parameters: 
@@ -312,4 +317,87 @@ Sends a username and password to the Caltech Adoption web service for a "Login" 
 
 **Error Handling:**
 * 400 Error: One or more required parameters for /admin/add endpoint are missing: username, password.
+* 500 Error: Something went wrong on the server, please try again later.
+
+## *GET /cart*
+**Request Type:** *GET*
+
+**Returned Data Format**: JSON
+
+**Description:** Returns a JSON collection of the URLs type/name for animals in the cart.
+
+**Supported Parameters** none
+
+**Example Request:** `/cart`
+
+**Example Response:**
+```json
+[
+  "bird/hummer", 
+  "turtle/bob"
+]
+```
+**Error Handling:**
+* 500 Error: Something went wrong on the server, please try again later.
+
+## *POST /cart/add*
+**Returned Data Format**: Plain Text
+
+**Description:** 
+Adds the given animal to the cart. Returns a success message.
+
+**Supported Parameters**
+* POST body parameters: 
+  * `type` (required) - type of animal (bird, turtle, ect.)
+  * `name` (required) - animal's name
+
+**Example Request:** `/cart/add`
+* POST body parameters: 
+  * `type='bird'`
+  * `name='hummer'`
+
+**Example Response:**
+```Bird with name Hummer was already in cart.```
+
+**Error Handling:**
+* 500 Error: Something went wrong on the server, please try again later.
+
+## *POST /cart/remove*
+**Returned Data Format**: Plain Text
+
+**Description:** 
+Removes the given animal from the cart. Returns a success message.
+
+**Supported Parameters**
+* POST body parameters: 
+  * `type` (required) - type of animal (bird, turtle, ect.)
+  * `name` (required) - animal's name
+
+**Example Request:** `/cart/remove`
+* POST body parameters: 
+  * `type='bird'`
+  * `name='hummer'`
+
+**Example Response:**
+```Removed from cart!```
+
+**Error Handling:**
+* 500 Error: Something went wrong on the server, please try again later.
+
+## *POST /cart/clear*
+**Returned Data Format**: Plain Text
+
+**Description:** 
+Removes all animals from the cart. Returns error if unsuccessful.
+
+**Supported Parameters**
+* POST body parameters: none
+
+**Example Request:** `/cart/clear`
+* POST body parameters: none
+
+**Example Response:**
+``````
+
+**Error Handling:**
 * 500 Error: Something went wrong on the server, please try again later.
