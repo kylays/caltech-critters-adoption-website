@@ -11,6 +11,7 @@
 
   const BASE_URL = "/";
   const IMAGE_DIR = "stock-img/";
+  const BUY_DELAY = 2000;
   let totalCost = 0;
 
   /**
@@ -70,17 +71,20 @@
   }
 
   /**
-   * Updates the results box with the text response.
+   * Updates the results box with the text response and clears the cart.
    * @param {string} textResponse - response to the buy POST request
    */
   function buyCallback(textResponse) {
-    id("results").textContent = textResponse;
-    fetch(BASE_URL + "cart/clear", { method : "POST" })
-              .then(checkStatus)
-              .catch(handleError);
-    removeAllChildNodes(id("items-section"));
-    totalCost = 0;
-    qs("#buy-section > p").textContent = `\$${totalCost}`;
+    id("results").textContent = "Purchasing...";
+    setTimeout(() => {
+      id("results").textContent = textResponse;
+      fetch(BASE_URL + "cart/clear", { method : "POST" })
+                .then(checkStatus)
+                .catch(handleError);
+      removeAllChildNodes(id("items-section"));
+      totalCost = 0;
+      qs("#buy-section > p").textContent = `\$${totalCost}`;
+    }, BUY_DELAY);
   }
 
   init();

@@ -301,7 +301,7 @@ app.post("/admin/login", multer().none(), async (req, res, next) => {
       let lines = info.split("\n");
       lines[0] = removeLineBreak(lines[0]);
       if (lines[0] === username && lines[1] === password) {
-        result = "Success, logging in....";
+        result = "Success, logging in...";
       } else {
         result = "Incorrect password."
       } 

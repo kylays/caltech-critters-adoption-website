@@ -38,7 +38,7 @@
    */
   function loginCallback(responseText) {
     id("results").textContent = responseText;
-    if (responseText === "Success, logging in....") {
+    if (responseText === "Success, logging in...") {
       setTimeout(() => {
         id("login-view").classList.add("hidden");
         id("add-view").classList.remove("hidden");
