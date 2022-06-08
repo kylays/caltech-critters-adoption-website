@@ -18,7 +18,7 @@
     id("login-form").addEventListener("submit", (evt) => {
       evt.preventDefault();
       let data = new FormData(id("login-form"));
-      fetch(BASE_URL + "admin/login", { method : "POST", body : data})
+      fetch(BASE_URL + "admin/login", { method : "POST", body : data })
                                     .then(checkStatus)
                                     .then(resp => resp.text())
                                     .then(loginCallback)

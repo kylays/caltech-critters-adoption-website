@@ -17,6 +17,10 @@ Summary of endpoints:
 * POST /admin/add
 * POST /stock-img/upload
 * POST /admin/login
+* GET /cart
+* POST /cart/add
+* POST /cart/remove
+* POST /cart/clear
 
 ## *GET /categories*
 **Request Type:** GET

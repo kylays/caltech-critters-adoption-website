@@ -24,8 +24,14 @@
       id("gallery-view").classList.remove("hidden");
       id("single-view").classList.add("hidden");
     });
+    qs("#overview > article > button").addEventListener("click", () => {
+      // TODO - add to cart somehow? write to the cart file
+    });
   }
 
+  /**
+   * Dynamically fills in the filter menu with the species available for adoption.
+   */
   async function populateFilterMenu() {
     let menu = id("menu");
     let types = await getJSONResponse(BASE_URL + "categories");
@@ -37,6 +43,9 @@
     }
   }
 
+  /**
+   * Dynamically fills in the gallery of animals available for adoption using the selected filter.
+   */
   async function populateGallery() {
     removeAllChildNodes(qs("#gallery-view > section"));
     let filter = id("menu").value;
@@ -67,6 +76,11 @@
     }
   }
 
+  /**
+   * Displays the single view of a selected animal.
+   * @param {string} type - type/species of the animal selected
+   * @param {string} name - name of the animal selected 
+   */
   async function viewAnimal(type, name) {
     id("gallery-view").classList.add("hidden");
     id("single-view").classList.remove("hidden");

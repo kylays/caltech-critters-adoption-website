@@ -314,6 +314,101 @@ app.post("/admin/login", multer().none(), async (req, res, next) => {
   }
 });
 
+/**
+ * Returns JSON data specifying what is in the cart.
+ */
+app.get("/cart", async (req, res, next) => {
+  try {
+    let cart = await fs.readFile("cart.txt", "utf8");
+    let lines = cart.split("\n");
+    res.json(lines);
+  } catch (err) {
+    res.status(SERVER_ERR_CODE);
+    err.message = SERVER_ERROR;
+    next(err);
+  }
+});
+
+/**
+ * Adds an animal to the cart
+ */
+app.post("/cart/add", multer().none(), async (req, res, next) => {
+  try {
+    let type = (req.body.type).toLowerCase();
+    let name = (req.body.name).toLowerCase();
+    let cart = await fs.readFile("cart.txt", "utf8");
+    let lines = cart.split("\n");
+    let found = false;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i] === `${type}/${name}`) {
+        newCart = true;
+        break;
+      }
+    }
+    if (found) {
+      res.status(CLIENT_ERR_CODE);
+      next(Error(`${type} with name ${name} was already in cart.`));
+      return;
+    }
+    await fs.writeFile("cart.txt", cart + "\n" + type + "/" + name);
+    res.type("text");
+    res.write("Added to cart!");
+    res.end();
+  } catch (err) {
+    res.status(SERVER_ERR_CODE);
+    err.message = SERVER_ERROR;
+    next(err);
+  }
+});
+
+/**
+ * Removes an animal from the cart
+ */
+app.post("/cart/remove", multer().none(), async (req, res, next) => {
+  try {
+    let type = (req.body.type).toLowerCase();
+    let name = (req.body.name).toLowerCase();
+    let cart = await fs.readFile("cart.txt", "utf8");
+    let lines = cart.split("\n");
+    let newCart = "";
+    let found = false;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i] !== `${type}/${name}`) {
+        newCart = newCart + lines[i];
+      }
+      else {
+        newCart = true;
+      }
+    }
+    if (!found) {
+      res.status(CLIENT_ERR_CODE);
+      next(Error(`${type} with name ${name} was not in cart.`));
+      return;
+    }
+    await fs.writeFile("cart.txt", newCart);
+    res.type("text");
+    res.write("Removed from cart!");
+    res.end();
+  } catch (err) {
+    res.status(SERVER_ERR_CODE);
+    err.message = SERVER_ERROR;
+    next(err);
+  }
+});
+
+/**
+ * Removes everything from the cart
+ */
+app.post("/cart/clear", multer().none(), async (req, res, next) => {
+  try {
+    await fs.writeFile("cart.txt", "");
+  } catch (err) {
+    res.status(SERVER_ERR_CODE);
+    err.message = SERVER_ERROR;
+    next(err);
+  }
+});
+
 /****************************** Helper Functions ******************************/
 /**
  * Returns the collection of information given the specific animal type and name
