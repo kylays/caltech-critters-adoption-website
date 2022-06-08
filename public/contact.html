@@ -40,14 +40,18 @@
             <p>
               <label for="name">Name: </label>
               <input type="text" name="name" required/>
+              <p>
+                <label for="email">Email: </label>
+                <input id="email" name="email" type="email" />
+              </p>
+              <p>
+                <label for="feedback">Feedback: </label>
+              </p>
+              <textarea id="feedback" name="feedback" rows="5" cols="40" minlength="10"></textarea>
+              <p>
+                <button id="send-msg">Send!</button>
+              </p>
             </p>
-            <p>
-              <label for="email">Email: </label>
-              <input id="email" name="email" type="email" />
-            </p>
-            <p><label for="feedback">Feedback: </label></p>
-            <textarea id="feedback" name="feedback" rows="5" cols="40" minlength="10"></textarea>
-            <button id="send-msg">Send!</button>
           </form>
         </section>
         <p id="results">

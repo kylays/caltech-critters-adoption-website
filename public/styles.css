@@ -9,6 +9,7 @@ This is the general styles file that keeps the website view consistent across pa
 body {
   background-image: url("imgs/retro-flowers1.jpg"); /*Source: Society6*/
   padding: 25px;
+  min-width: 650px;
 }
 
 body > * {
