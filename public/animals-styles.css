@@ -47,17 +47,25 @@ img {
 }
 
 /*---------------------------------Single-----------------------------------*/
-#overview, #overview > article {
-  display: flex;
+#single-view > button {
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
 }
 
-#overview, #overview > article > button, #overview > article > button {
+#overview {
+  display: flex;
+  width: 75%;
+  justify-content: space-around;
+  margin: 0px
+}
+
+#overview, #overview > article > button {
   margin: auto;
 }
 
 #overview {
-  flex-direction: row;
-  padding: 25px 0px;
+  width: 50%;
 }
 
 #overview > article, #overview > article > ul  {
@@ -65,13 +73,9 @@ img {
 }
 
 #overview > article {
-  padding: 0px 20px;
-  width: 40%;
-}
-
-#slides-gallery {
-  width: 60%;
-  max-width: 750px;
+  padding: 0px 0px 0px 20px;
+  min-width: 300px;
+  width: 50%;
 }
 
 #overview > article > ul {
@@ -80,18 +84,13 @@ img {
 }
 
 #overview > article > button {
-  width: 50%;
-  height: 50px;
+  width: 90%;
+  height: 60px;
   border-radius: 25px;
   background-color: rgb(255, 184, 62);
-  border-color: rgb(152, 81, 0);
+  color: rgb(152, 81, 0);
 }
 
-#overview > article {
-  flex-direction: column;
-  align-items: center;
-}
-
-#overview, #overview > article > button {
-  font-size: 20px;
+#about {
+  margin-top: 20px;
 }

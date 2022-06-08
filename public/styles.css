@@ -115,4 +115,5 @@ button, input {
 input, textarea, select, button {
   border: 1px solid rgb(152, 81, 0);
   border-radius: 10px;
+  padding: 5px;
 }

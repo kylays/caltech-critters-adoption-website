@@ -98,7 +98,7 @@
     id("gallery-view").classList.add("hidden");
     id("single-view").classList.remove("hidden");
     let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + type + "/" + name);
-    qs("#overview > h2").textContent = animal.name;
+    qs("#single-view > h2").textContent = animal.name;
     qs("#overview > img").src = IMAGE_DIR + animal.image;
     qs("#overview > img").alt = "picture of " + animal.type + " named " + animal.name; 
     let facts = qsa("#overview > article > ul > li"); 
@@ -121,7 +121,7 @@
   function addCartAddListener(animal) {
     if (animal.available === "yes") {
       let oldBtn = qs("#overview > article > button");
-      let newBtn = oldBtn.cloneNode(false);
+      let newBtn = oldBtn.cloneNode(true);
       oldBtn.parentNode.replaceChild(newBtn, oldBtn);
       newBtn.disabled = false;
       newBtn.addEventListener("click", () => {
