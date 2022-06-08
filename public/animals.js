@@ -24,9 +24,6 @@
       id("gallery-view").classList.remove("hidden");
       id("single-view").classList.add("hidden");
     });
-    qs("#overview > article > button").addEventListener("click", () => {
-      // TODO - add to cart somehow? write to the cart file
-    });
   }
 
   /**
@@ -65,6 +62,10 @@
       img.alt = "picture of " + animal.type + " named " + animal.name; 
       let figcaption = gen("figcaption");
       figcaption.textContent = animal.name;
+      console.log(animal);
+      if (animal.available === "no") {
+        figcaption.textContent = animal.name + " (SOLD)";
+      }
       figure.appendChild(img);
       figure.appendChild(figcaption);
       button.appendChild(figure);
@@ -89,14 +90,34 @@
     qs("#overview > img").src = IMAGE_DIR + animal.image;
     qs("#overview > img").alt = "picture of " + animal.type + " named " + animal.name; 
     let facts = qsa("#overview > article > ul > li"); 
-    console.log(facts);
     facts[0].textContent = "Name: " + animal.name;
     facts[1].textContent = "Species: " + animal.type;
     facts[2].textContent = "Age: " + animal.age;
     facts[3].textContent = "Gender: " + animal.gender;
     facts[4].textContent = "Adoption Price: $" + animal.cost;
+    facts[5].textContent = "Available: " + animal.available;
     qs("#about > h3").textContent = "About " + animal.name;
     qs("#about > p").textContent = animal.description;
+
+    // clear event listeners and add new buy event listener
+    if (animal.available === "yes") {
+      let oldBtn = qs("#overview > article > button");
+      console.log(animal);
+      let newBtn = oldBtn.cloneNode(false);
+      oldBtn.parentNode.replaceChild(newBtn, oldBtn);
+      newBtn.disabled = false;
+      newBtn.addEventListener("click", () => {
+        let data = new FormData();
+        data.append("type", animal.type);
+        data.append("name", animal.name);
+        fetch(BASE_URL + "cart/add", { method : "POST", body : data })
+                                      .then(checkStatus)
+                                      .then(resp => resp.text())
+                                      .catch(handleError);
+      });
+    } else {
+      qs("#overview > article > button").disabled = true;
+    }
   }
 
   init();

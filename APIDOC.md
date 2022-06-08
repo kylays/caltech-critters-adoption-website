@@ -234,7 +234,6 @@ Sends information about an animal being adopted/purchased to the Caltech Adoptio
 
 **Error Handling:**
 * 400 Error: One or more required POST parameters for /buy are missing: name, type.
-* 400 Error: `name` is already adopted!
 * 500 Error: Something went wrong on the server, please try again later.
 
 ## *POST /admin/add*

@@ -193,13 +193,17 @@ app.post("/buy", multer().none(), async (req, res, next) => {
     let animalInfo = await fs.readFile("animals/" + type + "/" + name + "/info.txt", "utf8");
     let lines = animalInfo.split("\n");
     if (lines[7] === "no") {
-      res.status(CLIENT_ERR_CODE);
-      next(Error(capitalize(name) + "is already adopted!"));
+      res.type("text");
+      res.write(capitalize(name) + " is already adopted!");
+      res.end();
       return;
     }
     lines[7] = "no";
     let content = "";
     for (let i = 0; i < lines.length; i++) {
+      if (i !== lines.length - 1) {
+        lines[i] = lines[i] + "\n";
+      }
       content = content + lines[i];
     }
     await fs.writeFile("animals/" + type + "/" + name + "/info.txt", content);
@@ -295,7 +299,7 @@ app.post("/admin/login", multer().none(), async (req, res, next) => {
     if (users.includes(username)) {
       let info = await fs.readFile("users/" + username + "/info.txt", "utf8");
       let lines = info.split("\n");
-      lines[0] = lines[0].replace(/\r?\n|\r/g, "");
+      lines[0] = removeLineBreak(lines[0]);
       if (lines[0] === username && lines[1] === password) {
         result = "Success, logging in....";
       } else {
@@ -346,11 +350,12 @@ app.post("/cart/add", multer().none(), async (req, res, next) => {
       }
     }
     if (found) {
-      res.status(CLIENT_ERR_CODE);
-      next(Error(`${type} with name ${name} was already in cart.`));
+      res.type("text");
+      res.write(`${type} with name ${name} was already in cart.`);
+      res.end();
       return;
     }
-    await fs.writeFile("cart.txt", cart + "\n" + type + "/" + name);
+    await fs.writeFile("cart.txt", cart + type + "/" + name + "\n");
     res.type("text");
     res.write("Added to cart!");
     res.end();
@@ -381,8 +386,9 @@ app.post("/cart/remove", multer().none(), async (req, res, next) => {
       }
     }
     if (!found) {
-      res.status(CLIENT_ERR_CODE);
-      next(Error(`${type} with name ${name} was not in cart.`));
+      res.type("text");
+      res.write(`${type} with name ${name} was not in cart.`);
+      res.end();
       return;
     }
     await fs.writeFile("cart.txt", newCart);
@@ -419,6 +425,7 @@ app.post("/cart/clear", multer().none(), async (req, res, next) => {
 async function getAnimal(type, name) {
   let animalInfo = await fs.readFile("animals/" + type + "/" + name + "/info.txt", "utf8");
   let lines = animalInfo.split("\n");
+  lines = lines.map(removeLineBreak);
   let result = 
     {
       "name" : lines[0],
@@ -472,6 +479,15 @@ function errorHandler(err, req, res, next) {
  */
 function capitalize(s) {
   return s[0].toUpperCase() + s.slice(1);
+}
+
+/**
+ * Removes line breaks from the given string
+ * @param {string} str - string to remove '\r's from 
+ * @returns the string without \r
+ */
+function removeLineBreak(str) {
+  return str.replace(/\r?\n|\r/g, "");
 }
 
 app.use(errorHandler);
