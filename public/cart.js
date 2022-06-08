@@ -16,6 +16,7 @@
   const BUY_URL = BASE_URL + "buy";
   const IMAGE_DIR = "stock-img/";
   const BUY_DELAY = 2000;
+  const REMOVE_URL = BASE_URL + "cart/remove";
   let totalCost = 0;
 
   /**
@@ -32,27 +33,9 @@
   async function populateCart() {
     let cartItems = await getJSONResponse(GET_CART_URL);
     for (let i = 0; i < cartItems.length; i++) {
-      let data = new FormData();
-      if (cartItems[i]) {
-        let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + cartItems[i]);
-        genAnimalCard(animal);
-        
-        data.append("type", animal.type);
-        data.append("name", animal.name);
-      }
-      qs("form").addEventListener("submit", (evt) => {
-        evt.preventDefault();
-        if (totalCost !== 0 && qs("#buy-section > form > #agreement").checked) {
-        fetch(BUY_URL, { method : "POST", body : data })
-                .then(checkStatus)
-                .then(resp => resp.text())
-                .then(buyCallback)
-                .catch(handleError);
-        }
-        else {
-          id("results").textContent = "Please agree to the terms and/or add something to the cart.";
-        }
-      });
+      let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + cartItems[i]);
+      genAnimalCard(animal);
+      updateBuyListener();
     }
   }
 
@@ -76,10 +59,30 @@
     totalCost += parseInt(animal.cost);
     list.appendChild(point);
     figcaption.appendChild(list);
+    let button = gen("button");
+    button.textContent = "Remove From Cart";
+    button.addEventListener("click", () => {
+      removeCallback(animal, card)
+    });
+    figcaption.appendChild(button);
 
     card.appendChild(img);
     card.appendChild(figcaption);
     id("items-section").appendChild(card);
+  }
+
+  async function removeCallback(animal, card) {
+    let data = new FormData();
+      data.append("type", animal.type);
+      data.append("name", animal.name);
+      await fetch(REMOVE_URL, { method : "POST", body : data })
+                .then(checkStatus)
+                .then(resp => resp.text())
+                .catch(handleError);
+      id("items-section").removeChild(card);
+      totalCost -= animal.cost;
+      qs("#buy-section > p").textContent = `\$${totalCost}`;
+      updateBuyListener();
   }
 
   /**
@@ -96,7 +99,37 @@
       removeAllChildNodes(id("items-section"));
       totalCost = 0;
       qs("#buy-section > p").textContent = `\$${totalCost}`;
+      updateBuyListener();
     }, BUY_DELAY);
+  }
+
+  /**
+   * Creates event listener for buy button according to what is currently in the cart.
+   */
+  async function updateBuyListener() {
+    let oldBtn = qs("form");
+    let newBtn = oldBtn.cloneNode(true);
+    oldBtn.parentNode.replaceChild(newBtn, oldBtn);
+    let cartItems = await getJSONResponse(GET_CART_URL);
+    for (let i = 0; i < cartItems.length; i++) {
+      let data = new FormData();
+      let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + cartItems[i]);
+      data.append("type", animal.type);
+      data.append("name", animal.name);
+      newBtn.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        if (totalCost !== 0 && qs("#buy-section > form > #agreement").checked) {
+        fetch(BUY_URL, { method : "POST", body : data })
+                .then(checkStatus)
+                .then(resp => resp.text())
+                .then(buyCallback)
+                .catch(handleError);
+        }
+        else {
+          id("results").textContent = "Please agree to the terms and/or add something to the cart.";
+        }
+      });
+    }
   }
 
   init();

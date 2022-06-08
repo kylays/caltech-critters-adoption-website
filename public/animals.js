@@ -76,7 +76,6 @@
       img.alt = "picture of " + animal.type + " named " + animal.name; 
       let figcaption = gen("figcaption");
       figcaption.textContent = animal.name;
-      console.log(animal);
       if (animal.available === "no") {
         figcaption.textContent = animal.name + " (SOLD)";
       }
@@ -119,10 +118,9 @@
    * otherwise disables the button.
    * @param {JSONObject} animal - animal to add an event listener to 
    */
-  function addCardAddListener(animal) {
+  function addCartAddListener(animal) {
     if (animal.available === "yes") {
       let oldBtn = qs("#overview > article > button");
-      console.log(animal);
       let newBtn = oldBtn.cloneNode(false);
       oldBtn.parentNode.replaceChild(newBtn, oldBtn);
       newBtn.disabled = false;
