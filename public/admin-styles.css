@@ -1,3 +1,12 @@
-.hidden {
-  display: none;
+ /*
+Name: Kyla Yu-Swanson
+CS 132 Spring 2022
+Date: June 2022
+
+This is the general styles file that keeps the website view consistent across pages.
+*/
+
+form, #results {
+  margin: auto auto;
+  text-align: center;
 }
