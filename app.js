@@ -324,7 +324,7 @@ app.post("/admin/login", multer().none(), async (req, res, next) => {
 app.get("/cart", async (req, res, next) => {
   try {
     let cart = await fs.readFile("cart.txt", "utf8");
-    let lines = cart.split("\r");
+    let lines = cart.split("\n");
     if (!lines[lines.length - 1]){
       lines.pop(); // remove the "" that was created from the newline
     }
