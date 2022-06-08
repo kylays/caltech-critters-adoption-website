@@ -80,16 +80,16 @@ header > nav, header > nav > ul {
   justify-content: space-between;
 }
 
-header > h1 > a, p, p > a, li, ul, h2, h3, div, figcaption, footer, button, form, input, textarea {
+header > h1 > a, p, p > a, li, ul, h2, h3, div, figcaption, footer, button, form, input, textarea, select {
   color: rgb(152, 81, 0);
 }
 
 /*---------------------------- MAIN -----------------------------*/
-p, p > a, li, ul, h2, h3, div, figcaption, footer, button, form, input, textarea {
+p, p > a, li, ul, h2, h3, div, figcaption, footer, button, form, input, textarea, select {
   font-family: Ubuntu, Verdana, sans-serif;
 }
 
-p, p > a, div, figcaption, footer, ul, li, button, form, input, textarea {
+p, p > a, div, figcaption, footer, ul, li, button, form, input, textarea, select {
   font-size: 20px;
 }
 
@@ -106,4 +106,8 @@ h2, h3, h4 {
 
 .hidden {
   display: none;
+}
+
+button {
+  cursor: pointer;
 }

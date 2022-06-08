@@ -3,7 +3,8 @@ Name: Kyla Yu-Swanson
 CS 132 Spring 2022
 Date: May 10, 2022
 
-This is the CSS file that styles the page showing all the animals available for adoption.
+This is the CSS file that styles the page showing all the animals available for 
+adoption and a single view page when an animal is clicked.
 */
 
 /*---------------------------------Gallery-----------------------------------*/
@@ -16,31 +17,29 @@ img {
   width: 100%;
 }
 
+#gallery-view > section > button > figure {
+  margin: 5px;
+}
+
 #gallery-view > section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-#gallery-view > section > a {
+#gallery-view > section > button {
   width: 25%;
   min-width: 200px;
-  background-color: rgb(255, 184, 62);
+  background-color: rgba(255, 184, 62, 0.5);
   padding: 15px;
   align-items: center;
   text-align: center;
-  border: 5px dotted rgb(152, 81, 0);
   margin: 15px;
+  border: none;
 }
 
-#gallery-view > section > a, figure, img {
+#gallery-view > section > button, figure, img {
   border-radius: 25px;
 }
 
-#gallery-view > section > a {
-  text-decoration: none;
-}
-
-.hidden {
-  display: none;
-}
+/*---------------------------------Single-----------------------------------*/
