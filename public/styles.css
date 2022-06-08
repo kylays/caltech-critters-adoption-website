@@ -108,6 +108,11 @@ h2, h3, h4 {
   display: none;
 }
 
-button {
+button, input {
   cursor: pointer;
+}
+
+input, textarea, select, button {
+  border: 1px solid rgb(152, 81, 0);
+  border-radius: 10px;
 }
