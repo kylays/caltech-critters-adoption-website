@@ -31,25 +31,7 @@
       let data = new FormData();
       if (cartItems[i]) {
         let animal = await getJSONResponse(BASE_URL + "one-animal/" + cartItems[i]);
-        let card = gen("figure");
-        let img = gen("img");
-        img.src = IMAGE_DIR + animal.image;
-        img.alt = "picture of " + animal.name;
-
-        let figcaption = gen("figcaption");
-        let list = gen("ul");
-        let point = gen("li");
-        point.textContent = "Name: " + animal.name;
-        list.appendChild(point);
-        point = gen("li");
-        point.textContent = "Cost: $" + animal.cost;
-        totalCost += parseInt(animal.cost);
-        list.appendChild(point);
-        figcaption.appendChild(list);
-
-        card.appendChild(img);
-        card.appendChild(figcaption);
-        id("items-section").appendChild(card);
+        genAnimalCard(animal);
         
         data.append("type", animal.type);
         data.append("name", animal.name);
@@ -68,6 +50,32 @@
         }
       });
     }
+  }
+
+  /**
+   * Generates an animal cart card and adds it to the card screen
+   * @param {JSONObject} animal - animal to make cart card for
+   */
+  function genAnimalCard(animal) {
+    let card = gen("figure");
+    let img = gen("img");
+    img.src = IMAGE_DIR + animal.image;
+    img.alt = "picture of " + animal.name;
+
+    let figcaption = gen("figcaption");
+    let list = gen("ul");
+    let point = gen("li");
+    point.textContent = "Name: " + animal.name;
+    list.appendChild(point);
+    point = gen("li");
+    point.textContent = "Cost: $" + animal.cost;
+    totalCost += parseInt(animal.cost);
+    list.appendChild(point);
+    figcaption.appendChild(list);
+
+    card.appendChild(img);
+    card.appendChild(figcaption);
+    id("items-section").appendChild(card);
   }
 
   /**

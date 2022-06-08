@@ -54,8 +54,16 @@
       animals = await getJSONResponse(BASE_URL + "animals/" + filter);
     }
     for (let i = 0; i < animals.length; i++) {
-      let animal = animals[i];
-      let button = gen("button");
+      genAnimalCard(animals[i]);
+    }
+  }
+
+  /**
+   * Generates an animal card as a preview of the animal and adds it to the store page.
+   * @param {JSONObject} animal - the animal used to make the card
+   */
+  function genAnimalCard(animal) {
+    let button = gen("button");
       let figure = gen("figure");
       let img = gen("img");
       img.src = IMAGE_DIR + animal.image;
@@ -74,7 +82,6 @@
         viewAnimal(animal.type, animal.name);
       });
       qs("#gallery-view > section").appendChild(button);
-    }
   }
 
   /**
@@ -98,8 +105,15 @@
     facts[5].textContent = "Available: " + animal.available;
     qs("#about > h3").textContent = "About " + animal.name;
     qs("#about > p").textContent = animal.description;
+    addCartAddListener(animal);
+  }
 
-    // clear event listeners and add new buy event listener
+  /**
+   * Adds an event listener to the adopt button for an animal if available, 
+   * otherwise disables the button.
+   * @param {JSONObject} animal - animal to add an event listener to 
+   */
+  function addCardAddListener(animal) {
     if (animal.available === "yes") {
       let oldBtn = qs("#overview > article > button");
       console.log(animal);
