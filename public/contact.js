@@ -8,6 +8,7 @@
   "use strict";
 
   const BASE_URL = "/";
+  const FEEDBACK_URL = BASE_URL + "feedback";
 
   /**
    * Runs the needed functions for the website upon starting.
@@ -16,7 +17,7 @@
     qs("form").addEventListener("submit", (evt) => {
       evt.preventDefault();
       let data = new FormData(qs("form"));
-      fetch(BASE_URL + "feedback", { method : "POST", body : data})
+      fetch(FEEDBACK_URL, { method : "POST", body : data})
                                     .then(checkStatus)
                                     .then(resp => resp.text())
                                     .then(updateResults)

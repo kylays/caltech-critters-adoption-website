@@ -10,6 +10,8 @@
 
   const BASE_URL = "/";
   const LOGIN_DELAY = 1500;
+  const ADD_URL = BASE_URL + "admin/add";
+  const LOGIN_URL = BASE_URL + "admin/login";
 
   /**
    * Runs the needed functions for the website upon starting.
@@ -18,7 +20,7 @@
     id("login-form").addEventListener("submit", (evt) => {
       evt.preventDefault();
       let data = new FormData(id("login-form"));
-      fetch(BASE_URL + "admin/login", { method : "POST", body : data })
+      fetch(LOGIN_URL, { method : "POST", body : data })
                                     .then(checkStatus)
                                     .then(resp => resp.text())
                                     .then(loginCallback)
@@ -63,7 +65,7 @@
     uploadParams.append("image", newFile);    
     params.delete("image");
 
-    let responseText = await postTextResponse(BASE_URL + "admin/add", params);
+    let responseText = await postTextResponse(ADD_URL, params);
     responseText = responseText + " " + await postTextResponse(BASE_URL + "stock-img/upload", uploadParams);
     id("results").textContent = responseText;
   }

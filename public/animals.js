@@ -11,12 +11,18 @@
 
   const BASE_URL = "/";
   const IMAGE_DIR = "stock-img/";
+  const GET_IMAGES_URL = BASE_URL + "images";
+  const TYPES_URL = BASE_URL + "categories";
+  const ALL_ANIMALS_URL = BASE_URL + "all-animals";
+  const TYPE_ANIMALS_BASE_URL = BASE_URL + "animals/";
+  const CART_ADD_URL = BASE_URL + "cart/add";
+  const GET_ANIMAL_BASE_URL = BASE_URL + "one-animal/";
 
   /**
    * Runs the needed functions for the website upon starting.
    */
   async function init() {
-    await getJSONResponse(BASE_URL + "images");
+    await getJSONResponse(GET_IMAGES_URL);
     populateFilterMenu();
     populateGallery();
     id("search").addEventListener("click", populateGallery);
@@ -31,7 +37,7 @@
    */
   async function populateFilterMenu() {
     let menu = id("menu");
-    let types = await getJSONResponse(BASE_URL + "categories");
+    let types = await getJSONResponse(TYPES_URL);
     for (let i = 0; i < types.length; i++) {
       let option = gen("option");
       option.value = types[i];
@@ -48,10 +54,10 @@
     let filter = id("menu").value;
     let animals = [];
     if (filter === "all") {
-      animals = await getJSONResponse(BASE_URL + "all-animals");
+      animals = await getJSONResponse(ALL_ANIMALS_URL);
     }
     else {
-      animals = await getJSONResponse(BASE_URL + "animals/" + filter);
+      animals = await getJSONResponse(TYPE_ANIMALS_BASE_URL + filter);
     }
     for (let i = 0; i < animals.length; i++) {
       genAnimalCard(animals[i]);
@@ -92,7 +98,7 @@
   async function viewAnimal(type, name) {
     id("gallery-view").classList.add("hidden");
     id("single-view").classList.remove("hidden");
-    let animal = await getJSONResponse(BASE_URL + "one-animal/" + type + "/" + name);
+    let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + type + "/" + name);
     qs("#overview > h2").textContent = animal.name;
     qs("#overview > img").src = IMAGE_DIR + animal.image;
     qs("#overview > img").alt = "picture of " + animal.type + " named " + animal.name; 
@@ -124,7 +130,7 @@
         let data = new FormData();
         data.append("type", animal.type);
         data.append("name", animal.name);
-        fetch(BASE_URL + "cart/add", { method : "POST", body : data })
+        fetch(CART_ADD_URL, { method : "POST", body : data })
                                       .then(checkStatus)
                                       .then(resp => resp.text())
                                       .catch(handleError);

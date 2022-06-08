@@ -10,6 +10,10 @@
   "use strict";
 
   const BASE_URL = "/";
+  const CLEAR_CART_URL = BASE_URL + "cart/clear";
+  const GET_CART_URL = BASE_URL + "cart"
+  const GET_ANIMAL_BASE_URL = BASE_URL + "one-animal/";
+  const BUY_URL = BASE_URL + "buy";
   const IMAGE_DIR = "stock-img/";
   const BUY_DELAY = 2000;
   let totalCost = 0;
@@ -26,11 +30,11 @@
    * Populates the page with the items in the cart.
    */
   async function populateCart() {
-    let cartItems = await getJSONResponse(BASE_URL + "cart");
+    let cartItems = await getJSONResponse(GET_CART_URL);
     for (let i = 0; i < cartItems.length; i++) {
       let data = new FormData();
       if (cartItems[i]) {
-        let animal = await getJSONResponse(BASE_URL + "one-animal/" + cartItems[i]);
+        let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + cartItems[i]);
         genAnimalCard(animal);
         
         data.append("type", animal.type);
@@ -39,7 +43,7 @@
       qs("form").addEventListener("submit", (evt) => {
         evt.preventDefault();
         if (totalCost !== 0 && qs("#buy-section > form > #agreement").checked) {
-        fetch(BASE_URL + "buy", { method : "POST", body : data })
+        fetch(BUY_URL, { method : "POST", body : data })
                 .then(checkStatus)
                 .then(resp => resp.text())
                 .then(buyCallback)
@@ -86,7 +90,7 @@
     id("results").textContent = "Purchasing...";
     setTimeout(() => {
       id("results").textContent = textResponse;
-      fetch(BASE_URL + "cart/clear", { method : "POST" })
+      fetch(CLEAR_CART_URL, { method : "POST" })
                 .then(checkStatus)
                 .catch(handleError);
       removeAllChildNodes(id("items-section"));
