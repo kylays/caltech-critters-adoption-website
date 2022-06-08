@@ -79,16 +79,16 @@ header > nav, header > nav > ul {
   justify-content: space-between;
 }
 
-header > h1 > a, p, p > a, li, ul, h2, h3, div, figcaption, footer, button {
+header > h1 > a, p, p > a, li, ul, h2, h3, div, figcaption, footer, button, form {
   color: rgb(152, 81, 0);
 }
 
 /*---------------------------- MAIN -----------------------------*/
-p, p > a, li, ul, h2, h3, div, figcaption, footer, button {
+p, p > a, li, ul, h2, h3, div, figcaption, footer, button, form {
   font-family: Ubuntu, Verdana, sans-serif;
 }
 
-p, p > a, div, figcaption, footer, ul, li {
+p, p > a, div, figcaption, footer, ul, li, button, form {
   font-size: 20px;
 }
 

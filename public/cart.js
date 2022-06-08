@@ -24,7 +24,6 @@
    */
   async function init() {
     await populateCart();
-    qs("#buy-section > p").textContent = `\$${totalCost}`;
   }
 
   /**
@@ -37,6 +36,7 @@
       genAnimalCard(animal);
       updateBuyListener();
     }
+    updateTotal(totalCost);
   }
 
   /**
@@ -71,6 +71,20 @@
     id("items-section").appendChild(card);
   }
 
+  /**
+   * Updates the displayed total cost of the items.
+   * @param {int} total - new totalCost
+   */
+  function updateTotal(total) {
+    totalCost = total;
+    qs("#buy-section > p").textContent = `Total: \$${totalCost}`;
+  }
+
+  /**
+   * Removes a animal from the cart and updates the total and buy button accordingly.
+   * @param {JSONObject} animal - the animal being removed from the cart
+   * @param {HTMLElement} card - the card corresponding to the animal
+   */
   async function removeCallback(animal, card) {
     let data = new FormData();
       data.append("type", animal.type);
@@ -80,8 +94,7 @@
                 .then(resp => resp.text())
                 .catch(handleError);
       id("items-section").removeChild(card);
-      totalCost -= animal.cost;
-      qs("#buy-section > p").textContent = `\$${totalCost}`;
+      updateTotal(totalCost - animal.cost);
       updateBuyListener();
   }
 
@@ -97,8 +110,7 @@
                 .then(checkStatus)
                 .catch(handleError);
       removeAllChildNodes(id("items-section"));
-      totalCost = 0;
-      qs("#buy-section > p").textContent = `\$${totalCost}`;
+      updateTotal(0);
       updateBuyListener();
     }, BUY_DELAY);
   }
@@ -107,7 +119,7 @@
    * Creates event listener for buy button according to what is currently in the cart.
    */
   async function updateBuyListener() {
-    let oldBtn = qs("form");
+    let oldBtn = qs("#buy-section > button");
     let newBtn = oldBtn.cloneNode(true);
     oldBtn.parentNode.replaceChild(newBtn, oldBtn);
     let cartItems = await getJSONResponse(GET_CART_URL);
@@ -116,8 +128,7 @@
       let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + cartItems[i]);
       data.append("type", animal.type);
       data.append("name", animal.name);
-      newBtn.addEventListener("submit", (evt) => {
-        evt.preventDefault();
+      newBtn.addEventListener("click", () => {
         if (totalCost !== 0 && qs("#buy-section > form > #agreement").checked) {
         fetch(BUY_URL, { method : "POST", body : data })
                 .then(checkStatus)

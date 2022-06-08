@@ -1,0 +1,35 @@
+ /*
+Name: Kyla Yu-Swanson
+CS 132 Spring 2022
+Date: May 10, 2022
+
+This is the styles file that manages the display of the cart.
+*/
+
+figure {
+  display: flex;
+  height: 250px;
+  padding: 20px;
+  background-color: rgba(255, 184, 62, 0.5);
+}
+
+#buy-section, #results {
+  text-align: center;
+}
+
+#buy-section, #results, figcaption {
+  margin: auto auto;
+}
+
+img, figure {
+  border-radius: 15px;
+}
+
+main {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+#buy-section > button {
+  margin: 20px auto;
+}
