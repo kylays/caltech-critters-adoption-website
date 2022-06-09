@@ -20,6 +20,10 @@ adoption and a single view page when an animal is clicked.
   border-radius: 25px;
 }
 
+#overview > article > button, #gallery-view > section > button {
+  background-color: rgb(193, 192, 123);
+}
+
 /*---------------------------------Gallery-----------------------------------*/
 figcaption {
   padding: 5px 0px 0px 0px;
@@ -41,7 +45,6 @@ img {
 #gallery-view > section > button {
   width: 25%;
   min-width: 200px;
-  background-color: rgba(255, 184, 62, 0.5);
   padding: 15px;
   align-items: center;
   margin: 15px;
@@ -83,8 +86,7 @@ img {
 #overview > article > button {
   width: 90%;
   height: 60px;
-  background-color: rgb(255, 184, 62);
-  color: rgb(152, 81, 0);
+  color: rgb(74, 84, 0);
 }
 
 #about {

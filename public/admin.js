@@ -9,7 +9,7 @@
   "use strict";
 
   const BASE_URL = "/";
-  const LOGIN_DELAY = 1500;
+  const LOGIN_DELAY = 1000;
   const ADD_URL = BASE_URL + "admin/add";
   const LOGIN_URL = BASE_URL + "admin/login";
 

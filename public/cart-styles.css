@@ -10,7 +10,7 @@ figure {
   display: flex;
   height: 250px;
   padding: 20px;
-  background-color: rgba(255, 184, 62, 0.5);
+  background-color: rgb(193, 192, 123);
 }
 
 #buy-section, #results {
