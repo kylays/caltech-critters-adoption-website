@@ -273,8 +273,7 @@ app.post("/stock-img/upload", upload.single('image'), (req, res, next) => {
   if (req.file.mimetype !== "image/jpeg" && req.file.mimetype !== "image/png") {
     res.status(CLIENT_ERR_CODE);
     next(Error("Please submit a .png or .jpg file."));
-  }
-  else {
+  } else {
     res.type("text");
     res.write("Successfully uploaded image.");
     res.end();
@@ -329,8 +328,7 @@ app.get("/cart", async (req, res, next) => {
     for (let i = lines.length - 1; i >= 0 ;i--) {
       if (!lines[i]) {
         lines.pop(); // remove the "" that was created from the newline
-      }
-      else {
+      } else {
         break;
       }
     }
@@ -384,8 +382,7 @@ app.post("/cart/remove", multer().none(), async (req, res, next) => {
     for (let i = 0; i < lines.length; i++) {
       if (removeLineBreak(lines[i]) !== `${type}/${name}`) {
         newCart = newCart + lines[i];
-      }
-      else {
+      } else {
         found = true;
       }
     }

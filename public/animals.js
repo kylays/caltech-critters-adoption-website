@@ -55,8 +55,7 @@
     let animals = [];
     if (filter === "all") {
       animals = await getJSONResponse(ALL_ANIMALS_URL);
-    }
-    else {
+    } else {
       animals = await getJSONResponse(TYPE_ANIMALS_BASE_URL + filter);
     }
     for (let i = 0; i < animals.length; i++) {

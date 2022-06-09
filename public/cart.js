@@ -135,8 +135,7 @@
                 .then(resp => resp.text())
                 .then(buyCallback)
                 .catch(handleError);
-        }
-        else {
+        } else {
           id("results").textContent = "Please agree to the terms and/or add something to the cart.";
         }
       });

@@ -7,6 +7,19 @@ This is the CSS file that styles the page showing all the animals available for
 adoption and a single view page when an animal is clicked.
 */
 
+#gallery-view > section, #overview, #overview > article {
+  display: flex;
+  justify-content: space-around;
+}
+
+#gallery-view > p, #gallery-view > section > button, #overview > article > ul {
+  text-align: center;
+}
+
+#gallery-view > section > button, figure, img, #overview > article > button {
+  border-radius: 25px;
+}
+
 /*---------------------------------Gallery-----------------------------------*/
 figcaption {
   padding: 5px 0px 0px 0px;
@@ -22,9 +35,7 @@ img {
 }
 
 #gallery-view > section {
-  display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
 
 #gallery-view > section > button {
@@ -33,17 +44,8 @@ img {
   background-color: rgba(255, 184, 62, 0.5);
   padding: 15px;
   align-items: center;
-  text-align: center;
   margin: 15px;
   border: none;
-}
-
-#gallery-view > section > button, figure, img {
-  border-radius: 25px;
-}
-
-#gallery-view > p {
-  text-align: center;
 }
 
 /*---------------------------------Single-----------------------------------*/
@@ -53,9 +55,7 @@ img {
   margin-bottom: 15px;
 }
 
-#overview {
-  display: flex;
-  justify-content: space-around;
+#overview, #overview > article{
   width: 50%;
 }
 
@@ -73,19 +73,16 @@ img {
 
 #overview > article {
   min-width: 300px;
-  width: 50%;
 }
 
 #overview > article > ul {
   list-style: none;
   padding: 0px 10px;
-  text-align: center;
 }
 
 #overview > article > button {
   width: 90%;
   height: 60px;
-  border-radius: 25px;
   background-color: rgb(255, 184, 62);
   color: rgb(152, 81, 0);
 }
@@ -95,9 +92,7 @@ img {
 }
 
 #overview > article {
-  display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
 
 #overview > article > h3 {
