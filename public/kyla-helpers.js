@@ -22,8 +22,8 @@ const DEBUG = true;
  * @param {Error} - error object with error message.
  */
   function handleError(err) {
-    if (id('result')) {
-      id('result').textContent = "Something went wrong on the server. Please try again later.";
+    if (id('results')) {
+      id('results').textContent = "Something went wrong on the server. Please try again later.";
     } else {
       console.log("Something went wrong on the server. Please try again later.");
     }

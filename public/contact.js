@@ -17,11 +17,15 @@
     qs("form").addEventListener("submit", (evt) => {
       evt.preventDefault();
       let data = new FormData(qs("form"));
-      fetch(FEEDBACK_URL, { method : "POST", body : data})
-                                    .then(checkStatus)
-                                    .then(resp => resp.text())
-                                    .then(updateResults)
-                                    .catch(handleError);
+      if (!data.get("name") || !data.get("email") || !data.get("feedback")) {
+        id("results").textContent = "Please enter something for all fields.";
+      } else {
+        fetch(FEEDBACK_URL, { method : "POST", body : data})
+          .then(checkStatus)
+          .then(resp => resp.text())
+          .then(updateResults)
+          .catch(handleError);
+      }
     });
   }
 
