@@ -7,7 +7,7 @@ This is the general styles file that keeps the website view consistent across pa
 */
 
 body {
-  background-image: url("imgs/wallpaper-more-shaded.png"); 
+  background-image: url("imgs/wallpaper-tinted.png"); 
   /*Image Source: https://www.wallpaperuse.com/vien/oiTmxR/*/
   padding: 25px;
   min-width: 650px;
