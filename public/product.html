@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+  Name: Kyla Yu-Swanson
+  CS 132 Spring 2022
+  Date: June 2022
+
+  This is an example page for viewing a single animal.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Caltech Critters: Adopt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Train+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="slides-styles.css" />
+    <link rel="stylesheet" href="product-styles.css" />
+    <script src="helpers.js"></script>
+    <script defer src="slides.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">Caltech Critters</a></h1>
+      <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="cart.html"><img src="imgs/cart1-white.png" alt="Cart"></a>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <article id="overview">
+          <h2>Fluffy</h2>
+          <div id="slides-gallery">
+            <img class="hide" src="imgs/product1a.jpg" alt="Fluffy climbs down a tree">
+            <img class="hide" src="imgs/product1b.jpg" alt="Fluffy sits on a wall">
+            <img class="hide" src="imgs/product1c.jpg" alt="Fluffy climbs up a tree">
+            <div>
+              <button id="prev-btn">&#10094;</button>
+              <button id="next-btn">&#10095;</button>
+            </div>
+          </div>
+          <article>
+            <h3>Quick Facts</h3>
+            <ul>
+              <li>Name: Fluffy</li>
+              <li>Species: Fox Squirrel</li>
+              <li>Age: 5 months</li>
+              <li>Adoption Price: $150</li>
+            </ul>
+            <button>Adopt Me</button>
+          </article>
+        </article>
+        <article id="about">
+          <h3>About Fluffy</h3>
+          <p>
+            Fluffy is a cheerful, small animal. Fluffy enjoys tree climbing and 
+            going for long walks on the grass.
+          </p>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; Kyla Yu-Swanson, Spring 2022
+      </p>
+    </footer>
+  </body>
+</html>
