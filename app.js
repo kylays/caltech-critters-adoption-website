@@ -328,7 +328,7 @@ app.get("/cart", async (req, res, next) => {
     let cart = await fs.readFile("cart.txt", "utf8");
     let lines = cart.split("\n");
     lines = lines.map(removeLineBreak);
-    for (let i = lines.length - 1; i >= 0 ;i--) {
+    for (let i = lines.length - 1; i >= 0; i--) {
       if (!lines[i]) {
         lines.pop(); // remove the "" that was created from the newline
       } else {
@@ -387,7 +387,6 @@ app.post("/cart/add", multer().none(), async (req, res, next) => {
  */
 app.post("/cart/remove", multer().none(), async (req, res, next) => {
   try {
-    console.log("here");
     let type = req.body.type;
     let name = req.body.name;
 
@@ -408,6 +407,9 @@ app.post("/cart/remove", multer().none(), async (req, res, next) => {
     for (let i = 0; i < lines.length; i++) {
       if (removeLineBreak(lines[i]) !== `${type}/${name}`) {
         newCart = newCart + lines[i];
+        if (i !== lines.length - 1) {
+          newCart = newCart + "\n";
+        }
       } else {
         found = true;
       }

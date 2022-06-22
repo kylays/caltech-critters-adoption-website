@@ -94,6 +94,7 @@
    * @param {string} name - name of the animal selected 
    */
   async function viewAnimal(type, name) {
+    clearErrorMessage();
     id("gallery-view").classList.add("hidden");
     id("single-view").classList.remove("hidden");
     let animal = await getJSONResponse(GET_ANIMAL_BASE_URL + type + "/" + name);
@@ -123,14 +124,16 @@
       let newBtn = oldBtn.cloneNode(true);
       oldBtn.parentNode.replaceChild(newBtn, oldBtn);
       newBtn.disabled = false;
-      newBtn.addEventListener("click", () => {
+      newBtn.addEventListener("click", async () => {
         let data = new FormData();
         data.append("type", animal.type);
         data.append("name", animal.name);
-        fetch(CART_ADD_URL, { method : "POST", body : data })
-                                      .then(checkStatus)
-                                      .then(resp => resp.text())
-                                      .catch(handleError);
+        try {
+          let response = await postTextResponse(CART_ADD_URL, data);
+          id('results').textContent = response;
+        } catch (err) {
+          handleError(err);
+        }
       });
     } else {
       qs("#overview > article > button").disabled = true;

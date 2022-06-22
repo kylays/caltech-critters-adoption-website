@@ -100,3 +100,7 @@ img {
 #overview > article > h3 {
   margin-bottom: 0px;
 }
+
+#results {
+  text-align: center;
+}
