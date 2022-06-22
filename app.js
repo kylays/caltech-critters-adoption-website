@@ -222,8 +222,8 @@ app.post("/buy", multer().none(), async (req, res, next) => {
  */
 app.post("/admin/add", multer().none(), async (req, res, next) => {
   try {
-    let type = (req.body.type).toLowerCase();
-    let name = (req.body.name).toLowerCase();
+    let type = req.body.type;
+    let name = req.body.name;
     let age = req.body.age;
     let gender = req.body.gender;
     let cost = req.body.cost;
@@ -237,6 +237,9 @@ app.post("/admin/add", multer().none(), async (req, res, next) => {
                   + " type, name, age, gender, cost, description, imageName, available"));
       return;
     }
+
+    type = type.toLowerCase();
+    name = name.toLowerCase();
 
     let types = await fs.readdir("animals/");          
     if (!types.includes(type)) {
@@ -345,8 +348,19 @@ app.get("/cart", async (req, res, next) => {
  */
 app.post("/cart/add", multer().none(), async (req, res, next) => {
   try {
-    let type = (req.body.type).toLowerCase();
-    let name = (req.body.name).toLowerCase();
+    let type = req.body.type;
+    let name = req.body.name;
+
+    if (!type || !name) { 
+      res.status(CLIENT_ERR_CODE);
+      next(Error("One or more required parameters for /cart/add endpoint are missing:" 
+                  + " type, name"));
+      return;
+    }
+
+    type = type.toLowerCase();
+    name = name.toLowerCase();
+
     let cart = await fs.readFile("cart.txt", "utf8");
     let lines = cart.split("\n");
     for (let i = 0; i < lines.length; i++) {
@@ -373,8 +387,20 @@ app.post("/cart/add", multer().none(), async (req, res, next) => {
  */
 app.post("/cart/remove", multer().none(), async (req, res, next) => {
   try {
-    let type = (req.body.type).toLowerCase();
-    let name = (req.body.name).toLowerCase();
+    console.log("here");
+    let type = req.body.type;
+    let name = req.body.name;
+
+    if (!type || !name) { 
+      res.status(CLIENT_ERR_CODE);
+      next(Error("One or more required parameters for /cart/remove endpoint are missing:" 
+                  + " type, name"));
+      return;
+    }
+    
+    type = type.toLowerCase();
+    name = name.toLowerCase();
+
     let cart = await fs.readFile("cart.txt", "utf8");
     let lines = cart.split("\n");
     let newCart = "";
@@ -409,6 +435,9 @@ app.post("/cart/remove", multer().none(), async (req, res, next) => {
 app.post("/cart/clear", multer().none(), async (req, res, next) => {
   try {
     await fs.writeFile("cart.txt", "");
+    res.type("text");
+    res.write("Removed all animals from cart!");
+    res.end();
   } catch (err) {
     res.status(SERVER_ERR_CODE);
     err.message = SERVER_ERROR;

@@ -86,16 +86,20 @@
    * @param {HTMLElement} card - the card corresponding to the animal
    */
   async function removeCallback(animal, card) {
-    let data = new FormData();
+    try {
+      clearErrorMessage();
+      let data = new FormData();
       data.append("type", animal.type);
       data.append("name", animal.name);
       await fetch(REMOVE_URL, { method : "POST", body : data })
                 .then(checkStatus)
-                .then(resp => resp.text())
-                .catch(handleError);
+                .then(resp => resp.text());
       id("items-section").removeChild(card);
       updateTotal(totalCost - animal.cost);
       updateBuyListener();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   /**

@@ -49,6 +49,9 @@
     }
   }
 
+  /**
+   * Submits the post request to add a new animal to the API.
+   */
   async function addAnimal() {
     let params = new FormData(id("add-form"));
     let file = params.get("image");
