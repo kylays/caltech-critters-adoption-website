@@ -5,4 +5,4 @@ the backend component with Clara Wang. Our shared code is found in the repo
 cs132-caltech-adoption-api. This repo includes some changes to that API and the 
 front end for a single-customer fake adoption website with features like adding 
 a new item (includes uploading an image), updating the API upon purchase, 
-filtering animals by their species, and more! 
+filtering animals by their species, and more! See the website at https://hidden-garden-41751.herokuapp.com/.
