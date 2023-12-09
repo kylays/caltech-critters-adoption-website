@@ -7,4 +7,4 @@ front end for a single-customer fake adoption website with features like adding
 a new item (includes uploading an image), updating the API upon purchase, 
 filtering animals by their species, and more! To see the website locally, clone 
 this repo and run `npm install` and `node app.js`. Then direct your web 
-browser to `localhost:8000/index.html`. See the website at https://kylays-caltech-critters.herokuapp.com/.
+browser to `localhost:8000/index.html`. See the website at https://caltech-critters-adoption.onrender.com/.
